@@ -27,6 +27,9 @@ function queueStrums(sequenceN, blockStartTime, chordIndex, precacheTime) {
     const kick = new Kick(audioCtx);
     kick.setup();
 
+    const hat = new HiHat(audioCtx);
+    hat.setup();
+
     var chord = chords[chordIndex];
     switch (sequenceN % 4) {
         case 0:
@@ -41,6 +44,7 @@ function queueStrums(sequenceN, blockStartTime, chordIndex, precacheTime) {
         case 2:
             curStrumStartTime = blockStartTime + timeUnit * 6;
             guitar.strumChord(curStrumStartTime, false, 0.8, chord);
+            hat.trigger(curStrumStartTime);
             break;
         case 3:
             curStrumStartTime = blockStartTime + timeUnit * 10;
