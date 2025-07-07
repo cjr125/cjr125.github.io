@@ -24,11 +24,15 @@ function queueStrums(sequenceN, blockStartTime, chordIndex, precacheTime) {
 
     var curStrumStartTime;
 
+    const kick = new Kick(audioCtx);
+    kick.setup();
+
     var chord = chords[chordIndex];
     switch (sequenceN % 4) {
         case 0:
             curStrumStartTime = blockStartTime + timeUnit * 0;
             guitar.strumChord(curStrumStartTime, true, 1.0, chord);
+            kick.trigger(curStrumStartTime);
             break;
         case 1:
             curStrumStartTime = blockStartTime + timeUnit * 4;
